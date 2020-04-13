@@ -1,6 +1,13 @@
 #bash
 
-sudo ln -s /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/default
+sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart
-sudo ln -s /home/box/web/etc/gunicorn.conf   /etc/gunicorn.d/test
-sudo /etc/init.d/gunicorn restart
+
+python3 -m venv venv
+pip install --upgrade pip
+pip install django
+pip install gunicorn
+
+source venv/bin/activate
+sudo gunicorn -c /home/box/web/etc/gunicorn.conf hello:wsgi_application
+gunicorn --bind=0.0.0.0:8080 --workers=2 --timeout=15 --log-level=debug hello.app
