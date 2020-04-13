@@ -9,5 +9,4 @@ pip install django
 pip install gunicorn
 
 source venv/bin/activate
-sudo gunicorn -c /home/box/web/etc/gunicorn.conf hello:wsgi_application
 gunicorn --bind=0.0.0.0:8080 --workers=2 --timeout=15 --log-level=debug hello.app
