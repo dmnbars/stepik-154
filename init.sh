@@ -9,4 +9,7 @@ pip install --upgrade pip
 pip install django==2.0
 pip install gunicorn
 
-gunicorn --bind=0.0.0.0:8080 --workers=2 --timeout=15 --log-level=debug hello:app
+cd /home/box/web/ask
+
+#gunicorn --bind=0.0.0.0:8080 --workers=2 --timeout=15 --log-level=debug hello:app
+gunicorn --bind=0.0.0.0:8000 --workers=2 --timeout=15 --log-level=debug ask.wsgi
